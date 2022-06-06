@@ -1,5 +1,8 @@
 //Game status
 let gameOver = false;
+//Gets score display span tags
+const winsDisplay = document.querySelector("#wins");
+const lossesDisplay = document.querySelector("#losses");
 //Sets color for player and AI
 let playerColor = "blue";
 let aiColor = "red";
@@ -25,11 +28,13 @@ for (const box of boxes) {
             };
             if (checkWin("X", true)) {
                 gameOver = true;
+                winsDisplay.textContent = 1 + parseInt(winsDisplay.textContent);
                 return;
             };
             aiMove();
             if (checkWin("O", true)) {
                 gameOver = true;
+                lossesDisplay.textContent = 1 + parseInt(lossesDisplay.textContent);
                 return;
             };
         }
@@ -58,6 +63,7 @@ function aiMove() {
         }
         while (boxes[aiBox].textContent != "")
     } else {
+        //Places winning cicle
         //Blocks you if you're about to win
         let moveMade = false;
         //For each box
