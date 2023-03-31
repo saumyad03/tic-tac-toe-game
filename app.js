@@ -13,12 +13,10 @@ const hardBtn = document.querySelector("#hard-btn");
 const resetBtn = document.querySelector("#reset-btn");
 //Gets array of all the boxes
 const boxes = document.querySelectorAll(".box");
-console.log(boxes);
 //Adds event listeners to each box so if user clicks on it, they can choose their move
 for (const box of boxes) {
     box.addEventListener("click", (e) => {
         //Places player's move and generates AI move if box isn't already occupied
-        if (gameOver == true) { console.log("gameover"); }
         if (e.target.textContent == "" && gameOver == false) {
             e.target.textContent = "X";
             e.target.style.color = playerColor;
@@ -44,14 +42,12 @@ for (const box of boxes) {
 easyBtn.addEventListener("click", (e) => {
     aiDifficulty = "Easy";
     reset();
-    console.log(aiDifficulty);
-})
+});
 //Changes AI difficulty to hard if hard button is clicked
 hardBtn.addEventListener("click", (e) => {
     aiDifficulty = "Hard";
     reset();
-    console.log(aiDifficulty);
-})
+});
 resetBtn.addEventListener("click", reset);
 //Generates AI move based on difficulty
 function aiMove() {
@@ -111,9 +107,7 @@ function checkWin(symbol, end = false) {
     for (let i = 0; i < boxes.length; i+= 3) {
         if (boxes[i].textContent == symbol && boxes[i+1].textContent == symbol && boxes[i+2].textContent ==symbol) {
             if (end == true) {
-                gameOver = true;
-                console.log(symbol + "won");
-            }
+                gameOver = true;            }
             return true;
         }
     }
@@ -122,7 +116,6 @@ function checkWin(symbol, end = false) {
         if (boxes[i].textContent == symbol && boxes[i+3].textContent == symbol && boxes[i+6].textContent == symbol) {
             if (end == true) {
                 gameOver = true;
-                console.log(symbol + "won");
             }
             return true;
         }
@@ -130,17 +123,13 @@ function checkWin(symbol, end = false) {
     //Checks win top-left to bottom-right
     if (boxes[0].textContent == symbol && boxes[4].textContent == symbol && boxes[8].textContent == symbol) {
         if (end == true) {
-            gameOver = true;
-            console.log(symbol + "won");
-        }
+            gameOver = true;        }
         return true;
     }
     //Checks win top-right to bottom-left
     if (boxes[2].textContent == symbol && boxes[4].textContent == symbol && boxes[6].textContent == symbol) {
         if (end = true) {
-            gameOver == true;
-            console.log(symbol + "won");
-        }
+            gameOver == true;        }
         return true;
     }
     return false;
